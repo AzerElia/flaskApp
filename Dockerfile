@@ -1,7 +1,7 @@
-FROM python:stretch
+FROM python:3.9-slim
+RUN pip install flask flask-mysql
+COPY . .
+EXPOSE 8080
+CMD ["flask", "run", "--host=0.0.0.0", "--port=8080"]
 
-COPY . /app
-WORKDIR /app
-
-RUN pip3 install --upgrade pip
-ENTRYPOINT ["gunicorn"  , "-b", ":8080", "main:APP"]
+#ENTYPOINT FLASK_APP=./app.py flask run
